@@ -1,0 +1,87 @@
+body{
+    margin: 0px;
+}
+.whole{
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+    
+}
+/* .header{
+    width: 70%;
+    background-color: rgb(225, 27, 27);
+    text-align: center;
+    
+} */
+#title{
+    margin: 30px;
+    font-family: montserrat;
+    font-weight: 700;
+    font-size: 30px;
+    color:rgb(199, 11, 11);;
+}
+/* .req_head{
+    color:rgb(199, 11, 11);;
+} */
+.outer{
+    margin-top: 30px;
+    background-color: #F2F2EB;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 35px;
+    
+}
+label{
+    font-family: raleway;
+}
+.inner{
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+}
+input,select{
+    margin-top: 15px;
+    margin-right: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 4px;
+    padding-left:5px ;
+}
+
+.radio input{
+    width: 100px;
+    height: 20px;
+    margin-right: 0;
+    
+}
+#info_head{
+    margin-top: 20px;
+    font-family: montserrat;
+    font-weight: 500;
+    font-size: 22px;
+
+}
+.button{
+    margin-top: 20px;
+    text-align: center;
+}
+button{
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(14, 186, 14);
+    font-family: raleway;
+    font-weight: 500;
+    font-size: 16px;
+}
+button:hover{
+    background-color: rgb(111, 214, 111);
+}

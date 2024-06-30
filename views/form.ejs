@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <link rel="stylesheet" href="/style/donation_req_form.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="whole">
+     <!-- <div class="header">
+    <div class="req_head">
+      
+    </div>
+    </div> -->
+    
+    <div class="outer">
+      <p id="title">BLOOD DONATION REQUEST FORM</p>
+      <div class="inner">
+      <p id="info_head">Personal Information</p>
+      <div>
+      <label for="fname">Name</label>
+      <br>
+      <input class="input" type="text" placeholder="Firstname">
+      <input class="input" type="text" placeholder="Lastname">
+    </div>
+      <div>
+      <label for="Contactno">Phone Number</label>
+      <br>
+      <input class="input" type="tel" placeholder="+92 XXXXXXXXXX">
+    </div>
+      <div>
+      <label for="email">Email</label>
+      <br>
+      <input class="input" type="email" placeholder="someone@gmail.com">
+    </div>
+      <div>
+      <label for="address">Address</label>
+      <br>
+      <input class="input" type="text" placeholder="House#">
+      <input class="input" type="text" placeholder="Streetno">
+      <br>
+      <input class="input" type="text" placeholder="Area">
+      <input class="input" type="text" placeholder="City">
+    </div>
+      <div>
+      <label for="dob">Date of Birth</label>
+      <br>
+      <input class="input" type="date" placeholder="MM-DD-YYYY">
+    </div>
+      <div>
+      <label for="nationality">Nationality</label>
+      <br>
+      <input class="input" type="text">
+    </div>
+      <div class="radio">
+      <label for="gender">Gender</label>
+      <br>
+      <input type="radio" name="gender" id="male" value="Male">
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female" value="Female">
+      <label for="female">Female</label>
+    </div>
+      <p id="info_head">Blood Information</p>
+      <div>
+        <label for="bld_grp">Blood Group</label>
+      <br>
+      <select name="bld_grp" id="bld_grp">
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+    </select>
+      </div>
+      <div>
+        <label for="units">Donation Units</label>
+      <br>
+      <input class="input" type="number" >
+      </div>
+      <div class="button">
+        <button>
+          Submit Request
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+
+</html>

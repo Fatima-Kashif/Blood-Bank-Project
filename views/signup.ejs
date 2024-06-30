@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/style/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="whole">
+        <header>
+            <div class="head">
+              <div class="head1">
+                <i class="fa-solid fa-heart-pulse fa-lg" style="color:  rgb(242, 235, 235); padding-top: 10px;"></i>
+                <h4 class="head4">Blood Bank Management System</h4>
+              </div >
+              <div class="options">
+              <div class="head2">
+                <i class="fa-solid fa-house-chimney" style="color:  rgb(242, 235, 235);"></i>
+                <p class="head3">Home</p>
+               </div>
+               <div class="head2">
+                <i class="fa-solid fa-user-tie" style="color: rgb(242, 235, 235);"></i>
+                <p class="head3">Log in</p>
+               </div>
+             </div>
+            </div>
+        </header>
+       <div class="req_head">
+         <p id="title">SIGN UP</p>
+       </div>
+       <div class="outer">
+         <div class="inner">
+         <div>
+         <label for="fname">Name</label>
+         <br>
+         <input class="input" type="text" placeholder="Firstname">
+         <input class="input" type="text" placeholder="Lastname">
+       </div>
+         <div>
+         <label for="Contactno">Phone Number</label>
+         <br>
+         <input class="input" type="tel" placeholder="+92 XXXXXXXXXX">
+       </div>
+       <div class="radio">
+        <label for="gender">Gender</label>
+        <br>
+        <input type="radio" name="gender" id="male" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="female" value="Female">
+        <label for="female">Female</label>
+      </div>
+      <div>
+        <label for="user">User mode</label>
+      <br>
+      <select style="border: 2px solid black;" name="user" id="user">
+        <option value="patient">Patient</option>
+        <option value="Donor">Donor</option>
+    </select>
+      </div>
+         <div>
+         <label for="email">Email</label>
+         <br>
+         <input class="input" type="email" placeholder="someone@gmail.com">
+       </div>
+       <div>
+        <label for="password">Password</label>
+        <br>
+        <input class="input" type="password" placeholder="password">
+       </div>
+       <div>
+        <label for="password">Re-enter Password</label>
+        <br>
+        <input class="input" type="password" placeholder=" Confrim password">
+       </div>
+       <div class="button">
+        <button class="login">SignUp</button>
+       </div>
+         
+   </div>
+       </div>
+    
+</body>
+</html>

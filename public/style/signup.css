@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    border: border-box;
+    
+}
+body{
+    background-color: #F2F2EB;
+}
+.head{
+    background-color:  rgb(219, 9, 9);
+    display: flex;
+    width: 99%;
+    height: 40px;
+    padding: 10px 0px 10px 10px;
+    justify-content: space-between;
+    font-family: 'Arial';
+}
+.options{
+    display: flex;
+}
+.head1{
+    padding-top: 12px;
+    display: flex;
+    font-size: 1.15rem;
+    color:  rgb(242, 235, 235)
+}
+.head2{
+    padding-top: 12px;
+    padding-left: 0px;
+    padding-right: 22px;
+    display: flex;
+    font-weight: bold;
+    font-size: 1rem;
+    color:  rgb(242, 235, 235)
+}
+.head3{
+   padding-right: 10px;
+}
+i{
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+.head2:hover{
+    font-size: 1.2rem;
+}
+#title{
+    font-family: montserrat;
+    font-weight: 700;
+    font-size: 30px;
+}
+.req_head{
+    color:rgb(199, 11, 11);
+    text-align: center;
+    margin: 50px;
+
+}
+.outer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 35px;
+    
+}
+label{
+    font-family: Arial;
+}
+.inner{
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+  
+
+}
+input,select{
+    margin-top: 15px;
+    margin-right: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 4px;
+    padding-left:5px ;
+}
+
+.radio input{
+    width: 100px;
+    height: 20px;
+    margin-right: 0;
+    
+}
+#info_head{
+    margin-top: 20px;
+    font-family: montserrat;
+    font-weight: 500;
+    font-size: 22px;
+
+}
+.button{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.login{
+    width: 200px;
+    height: 60px;
+    border-radius: 5px;
+    font-family: Arial;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+
+}
+.login:hover{
+    font-size: 20px;
+}
+.login{
+    background-color: rgb(153, 12, 12);
+}
