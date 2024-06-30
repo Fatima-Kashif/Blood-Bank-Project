@@ -28,55 +28,52 @@
     <div class="outer">
       <p id="title">BLOOD DONATION REQUEST FORM</p>
       <div class="inner">
-      <p id="info_head">Personal Information</p>
-      <div>
+      <!-- <p id="info_head">Personal Information</p> -->
+      <!-- <div>
       <label for="fname">Name</label>
       <br>
-      <input class="input" type="text" placeholder="Firstname">
-      <input class="input" type="text" placeholder="Lastname">
+      <input class="input" type="text" placeholder="Firstname" required>
+      <input class="input" type="text" placeholder="Lastname" required>
     </div>
       <div>
       <label for="Contactno">Phone Number</label>
       <br>
-      <input class="input" type="tel" placeholder="+92 XXXXXXXXXX">
-    </div>
-      <div>
+      <input class="input" type="tel" placeholder="+92 XXXXXXXXXX" required>
+    </div> 
+       <div> -->
+        <form id="bloodForm">
       <label for="email">Email</label>
       <br>
-      <input class="input" type="email" placeholder="someone@gmail.com">
-    </div>
-      <div>
+      <input id="userEmail" class="input" type="email" placeholder="someone@gmail.com" required>
+    </div> 
+      <!-- <div>
       <label for="address">Address</label>
       <br>
-      <input class="input" type="text" placeholder="House#">
-      <input class="input" type="text" placeholder="Streetno">
+      <input class="input" type="text" placeholder="House#" required>
+      <input class="input" type="text" placeholder="Streetno" required>
       <br>
-      <input class="input" type="text" placeholder="Area">
-      <input class="input" type="text" placeholder="City">
+      <input class="input" type="text" placeholder="Area" required>
+      <input class="input" type="text" placeholder="City" required>
     </div>
       <div>
       <label for="dob">Date of Birth</label>
       <br>
-      <input class="input" type="date" placeholder="MM-DD-YYYY">
+      <input class="input" type="date" placeholder="MM-DD-YYYY" required>
     </div>
       <div>
-      <label for="nationality">Nationality</label>
-      <br>
-      <input class="input" type="text">
-    </div>
       <div class="radio">
       <label for="gender">Gender</label>
       <br>
-      <input type="radio" name="gender" id="male" value="Male">
+      <input type="radio" name="gender" id="male" value="Male" required>
       <label for="male">Male</label>
-      <input type="radio" name="gender" id="female" value="Female">
+      <input type="radio" name="gender" id="female" value="Female" required>
       <label for="female">Female</label>
-    </div>
+    </div> --> 
       <p id="info_head">Blood Information</p>
       <div>
         <label for="bld_grp">Blood Group</label>
       <br>
-      <select name="bld_grp" id="bld_grp">
+      <select id="bloodGroup" name="bld_grp" id="bld_grp" required>
         <option value="O+">O+</option>
         <option value="O-">O-</option>
         <option value="A+">A+</option>
@@ -90,17 +87,47 @@
       <div>
         <label for="units">Donation Units</label>
       <br>
-      <input class="input" type="number" >
+      <input id="unit" class="input" type="number" required >
       </div>
-      <div class="button">
+      <div class="button" type="submit">
         <button>
           Submit Request
         </button>
       </div>
+    </form>
     </div>
 
   </div>
 </div>
-</body>
+<script>
+  document.getElementById('bloodForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
+      const email = document.getElementById("userEmail").value
+      const blood_group= document.getElementById("bloodGroup").value
+      const units= document.getElementById("unit").value
+
+      const data = {
+            email:email,
+            units:units,
+            blood_group:blood_group 
+          }
+
+          console.log(data)
+
+      fetch('/submit', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( data)
+      })
+      .then(response => response.json())
+      .catch((error) => {
+          console.error('Error:', error);
+          // Handle error, e.g., show an error message
+      });
+  });
+</script>
+</body>
 </html>
