@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <link rel="stylesheet" href="/style/donation_req_form.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <% if (locals.email && locals.d) { %>
+    <h2 style="color: red;">Email id of  <%= d %> <%= email %> </h2>
+  <%} %>
+
+  <% if (locals.email && locals.p) { %>
+    <h2 style="color: red;">Email id of  <%= p %> <%= email %> </h2>
+  <%} %>
+
+<% if (locals.donorID) { %>
+  <h2 style="color: green;">Donor ID <%= donorID %> </h2>
+<%} %>
+<% if (locals.patientID) { %>
+  <h2 style="color: green;">Patient ID <%= patientID %> </h2>
+<%} %>
+  <div class="whole">
+    
+    
+    <div class="outer">
+      <p id="title">BLOOD DONATION REQUEST FORM</p>
+      <div class="inner">
+    
+        <form id="bloodForm" action="/patientapi" method="post">
+     
+      <p id="info_head">Blood Information</p>
+      <div>
+        <label for="bld_grp">Blood Group</label>
+      <br>
+      <select id="bloodGroup" name="bld_grp" id="bld_grp" required>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+    </select>
+      </div>
+      <div>
+        <label for="units">Donation Units</label>
+      <br>
+      <input id="unit" name="units" class="input" type="number" required >
+      <input id="PT_ID" name="PT_ID" class="input" type="number" value="<%= patientID %>" hidden >
+      </div>
+      <div class="button" type="submit">
+        <button>
+          Submit Request
+        </button>
+      </div>
+    </form>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

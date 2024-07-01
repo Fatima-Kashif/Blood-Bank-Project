@@ -1,14 +1,14 @@
 // for server initialize 
 import mysql from "mysql2";
 import express from "express";
-// import  bodyParser from "body-parser";
+import  bodyParser from "body-parser";
 const app = express()
 const port = 3000
 // ye ek middleware ha middleware basically fn hota ha isse ham public folder access krte hain
 app.use(express.static('public')) 
 //aacept json body 
 app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Database connection pool
@@ -23,43 +23,129 @@ const connection = mysql.createPool({
   queueLimit:0
 
 });
+let logindetails = []
+let donorDetails = []
+let patientsDetails = []
+
+const patientUnionDonor =  "SELECT * FROM PATIENT UNION SELECT * FROM DONOR";
+const donorDetailsSql = "SELECT * FROM DONOR"
+const patientsDetailsSql = "SELECT * FROM PATIENT"
+connection.query(patientUnionDonor, (error, results, fields) => {
+  if (error) {
+    console.error('Error connecting to MySQL:', error);
+    return;
+  }
+   logindetails = results
+  // console.log('Query results:', logindetails);
+});
+
+connection.query(donorDetailsSql, (error, results, fields) => {
+  if (error) {
+    console.error('Error connecting to MySQL:', error);
+    return;
+  }
+   donorDetails = results
+  // console.log('Query results:', donorDetails);
+});
+
+connection.query(patientsDetailsSql, (error, results, fields) => {
+  if (error) {
+    console.error('Error connecting to MySQL:', error);
+    return;
+  }
+   patientsDetails = results
+  // console.log('Query results:', logindetails);
+});
 
 
-// app.get('/', (req, res) => {
-//     res.render("test")
-//   }) //routing point for testing purpose
 app.get('/login', (req, res) => {
   res.render("login")
 })
 
-app.post('/login', (req, res) => {
-  const { email, password } = req.body; // extract email and password from req body
+// app.post('/loginapi', (req, res) => {
+//   let userEmail = req.body.email
+//   let userPass = req.body.password
 
-  // Query to check email and password in both tables
-  // SELECT * FROM ADMIN WHERE A_EMAIL = ? AND A_PSWD = ?
-  //     UNION
-  const query = `
-      SELECT * FROM PATIENT WHERE P_EMAIL = ? AND P_PSWD = ?
-      UNION
-      SELECT * FROM DONOR WHERE D_EMAIL = ? AND D_PSWD = ?
-  `;
+//   donorDetails.forEach(element => {
+//     if(element.D_EMAIL == userEmail && element.D_PSWD == userPass){
+//       // res.render("form")
+//       res.render("formpatient",{email:element.D_EMAIL.toLowerCase(),donorID:element.DONOR_ID,d:"Donor"})
 
-  connection.query(query, [email, password, email, password], (err, results) => {
-    if (err) throw err;
+//     }
+//   });
 
-    if (results.length > 0) {
-      // Successful login
-      res.redirect('/form');
-    } else {
-      // Unsuccessful login
-      res.send('Invalid email or password');
+//   patientsDetails.forEach(e => {
+//     if(e.P_EMAIL == userEmail && e.P_PSWD == userPass){
+//       // res.render("form")
+//       res.render("formpatient",{email:e.P_EMAIL.toLowerCase(),patientID:e.PATIENT_ID,p:"Patient"})
+
+//     }
+//   });
+// });
+app.post('/loginapi', (req, res) => {
+  let userEmail = req.body.email
+  let userPass = req.body.password
+
+  donorDetails.forEach(element => {
+    if(element.D_EMAIL == userEmail && element.D_PSWD == userPass){
+      // res.render("form")
+      res.render("formpatient",{email:element.D_EMAIL.toLowerCase(),donorID:element.DONOR_ID,d:"Donor"})
+
     }
   });
+
+  patientsDetails.forEach(e => {
+    if(e.P_EMAIL == userEmail && e.P_PSWD == userPass){
+      // res.render("form")
+      res.render("formpatient",{email:e.P_EMAIL.toLowerCase(),patientID:e.PATIENT_ID,p:"Patient"})
+
+    }
+  });
+  app.post('/patientapi', (req, res) => {
+    let bld_grp = req.body.bld_grp
+    let units = req.body.units
+    let date
+    let PT_ID = req.body.PT_ID
+      // ab ham patient ka data request me put kraha hain
+    console.log(bld_grp);
+    let patientReqSql = "INSERT INTO REQUEST (REQ_ID,PATIENT_ID,UNITS,BLOOD_GRP_REQ,TO_DATE,STATUS) VALUES(?,?,?,?,?,?)"
+    let curDate = "SELECT curdate() FROM DUAL;"
+    connection.query(curDate, (error, results, fields) => {
+      if (error) {
+        console.error('Error connecting to MySQL:', error);
+        return;
+      }
+       date = results
+      
+    });
+
+    connection.query(patientReqSql,[11,parseInt(PT_ID),units,bld_grp,date,"Pending"], (error, results, fields) => {
+      if (error) {
+        console.error('Error connecting to MySQL:', error);
+        return;
+      }
+      
+      
+    });
+
+    res.render("login")
+    });
+  // connection.query(query, [email, password, email, password], (err, results) => {
+  //   if (err) throw err;
+
+  //   if (results.length > 0) {
+  //     // Successful login
+  //     res.redirect('/form');
+  //   } else {
+  //     // Unsuccessful login
+  //     res.send('Invalid email or password');
+  //   }
+  // });
 });
 
 // Route for displaying form page
 app.get('/form', (req, res) => {
-  res.render('form');
+  res.render('formpatient');
 });
 
 // Route for displaying form page
@@ -138,4 +224,3 @@ app.post('/submit', (req, res) => {
   app.listen(port, () => {
     console.log("Example app listening on port ${port}")
   }) 
-

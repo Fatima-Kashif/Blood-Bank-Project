@@ -23,11 +23,19 @@ body{
     font-family: montserrat;
     font-weight: 700;
     font-size: 30px;
-    color:rgb(199, 11, 11);;
+    color:rgb(199, 11, 11);
 }
 /* .req_head{
     color:rgb(199, 11, 11);;
 } */
+ .email{
+    color:rgb(199,11,11); 
+    font-family: montserrat;
+ }
+ .id{
+    color: rgb(31, 144, 76); 
+    font-family: montserrat;
+ }
 .outer{
     margin-top: 30px;
     background-color: #F2F2EB;
