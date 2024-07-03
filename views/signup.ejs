@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  
+
+  <form action="/signupform" method="post">
     <div class="whole">
         <header>
             <div class="head">
@@ -36,13 +37,13 @@
          <div>
          <label for="fname">Name</label>
          <br>
-         <input class="input" type="text" placeholder="Firstname" required>
-         <input class="input" type="text" placeholder="Lastname" required>
+         <input class="input" type="text" name="Firstname" placeholder="Firstname" required>
+         <input class="input" type="text" name="Lastname" placeholder="Lastname" required>
        </div>
          <div>
          <label for="Contactno">Phone Number</label>
          <br>
-         <input class="input" type="tel" placeholder="+92 XXXXXXXXXX" required>
+         <input class="input" type="tel" name="Number" placeholder="+92 XXXXXXXXXX" required>
        </div>
        <div class="radio">
         <label for="gender">Gender</label>
@@ -57,45 +58,46 @@
       <br>
       <select style="border: 2px solid black;" name="user" id="user" required>
         <option value="patient">Patient</option>
-        <option value="Donor">Donor</option>
+        <option value="donor">Donor</option>
     </select>
       </div>
          <div>
          <label for="email">Email</label>
          <br>
-         <input class="input" type="email" placeholder="someone@gmail.com" required>
+         <input class="input" type="email" name="email" placeholder="someone@gmail.com" required>
        </div>
        <div>
         <label for="password">Password</label>
         <br>
-        <input class="input" type="password" placeholder="password" required>
+        <input class="input" type="password" name="password" placeholder="password" required>
        </div>
        <div>
         <label for="password">Re-enter Password</label>
         <br>
-        <input class="input" type="password" placeholder=" Confrim password" required>
+        <input class="input" type="password" name="repassword" placeholder=" Confrim password" required>
        </div>
        <div>
-        <label for="address">Address</label>
+        <label >Address</label>
         <br>
         <input class="input" type="text" placeholder="House#" required>
-        <input class="input" type="text" placeholder="Streetno" required>
+        <input class="input" type="text"  placeholder="Streetno" required>
         <br>
-        <input class="input" type="text" placeholder="Area" required>
-        <input class="input" type="text" placeholder="City" required>
+        <input class="input" type="text" name="address" placeholder="Area" required>
+        <input class="input" type="text"  placeholder="City" required>
       </div>
         <div>
         <label for="dob">Date of Birth</label>
         <br>
-        <input class="input" type="date" placeholder="MM-DD-YYYY" required>
+        <input class="input" type="date" name="DOB" placeholder="MM-DD-YYYY" required>
       </div>
       
        <div class="button">
-        <button class="login">SignUp</button>
+        <button class="login" type="submit">SignUp</button>
        </div>
          
    </div>
        </div>
+    </form>
     
 </body>
 </html>

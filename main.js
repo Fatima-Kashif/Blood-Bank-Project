@@ -55,7 +55,6 @@ connection.query(patientsDetailsSql, (error, results, fields) => {
     return;
   }
   patientsDetails = results;
-  // console.log('Query results:', logindetails);
 });
 
 app.get("/login", (req, res) => {
@@ -66,26 +65,6 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
-// app.post('/loginapi', (req, res) => {
-//   let userEmail  req.body.email
-//   let userPass = req.body.password
-
-//   donorDetails.forEach(element => {
-//     if(element.D_EMAIL == userEmail && element.D_PSWD == userPass){
-//       // res.render("form")
-//       res.render("formpatient",{email:element.D_EMAIL.toLowerCase(),donorID:element.DONOR_ID,d:"Donor"})
-
-//     }
-//   });
-
-//   patientsDetails.forEach(e => {
-//     if(e.P_EMAIL == userEmail && e.P_PSWD == userPass){
-//       // res.render("form")
-//       res.render("formpatient",{email:e.P_EMAIL.toLowerCase(),patientID:e.PATIENT_ID,p:"Patient"})
-
-//     }
-//   });
-// });
 app.post("/loginapi", (req, res) => {
   let userEmail = req.body.email;
   let userPass = req.body.password;
@@ -181,17 +160,7 @@ app.post("/loginapi", (req, res) => {
     );
 
   });
-  // connection.query(query, [email, password, email, password], (err, results) => {
-  //   if (err) throw err;
 
-  //   if (results.length > 0) {
-  //     // Successful login
-  //     res.redirect('/form');
-  //   } else {
-  //     // Unsuccessful login
-  //     res.send('Invalid email or password');
-  //   }
-  // });
 });
 
 // Route for displaying form page
@@ -231,8 +200,6 @@ app.get("/get-all-donors", (req, res) => {
   });
 });
 
-//trying gpt code to send data from the form to database
-
 // Route for handling form submission
 app.post("/submit", (req, res) => {
   const { email, units, blood_group } = req.body; // Extract form data
@@ -247,52 +214,77 @@ app.post("/submit", (req, res) => {
     `;
   connection.query(query, [email, email], (err, results) => {
     if (err) throw err;
-
     console.log(results);
-    // if (results.length > 0) {
-    //   const user = results[0];
-
-    //   if (user.role === 'PATIENT') {
-    //     // User is a patient, insert into REQUEST table
-    //     const insertRequestQuery = `
-    //       INSERT INTO REQUEST (PATIENT_ID, UNITS, BLOOD_GRP_REQ, TO_DATE, STATUS)
-    //       VALUES (?, ?, ?, NOW(), 'pending')
-    //       `
-    //     ;
-
-    //     connection.query(insertRequestQuery, [user.id, units, blood_group], (err, results) => {
-    //       if (err) throw err;
-    //       console.log("Request table updated: ", results);
-    //       res.send("Request has been submitted.");
-    //     });
-    //   } else if (user.role === 'DONOR') {
-    //     // User is a donor, insert into DONOR_RECORD table
-    //     const insertDonorRecordQuery = `
-    //       INSERT INTO DONOR_RECORD (DONOR_ID, D_DATE_DON, D_UNITS)
-    //       VALUES (?, NOW(), ?)
-    //       `
-    //     ;
-
-    //     connection.query(insertDonorRecordQuery, [user.id, units], (err, results) => {
-    //       if (err) throw err;
-    //       console.log("Donor record updated: ", results);
-    //       res.send("Donor record has been updated.");
-    //     });
-    //   }
-    // } else {
-    //   res.send('User not found.');
-    // }
   });
 });
 
-// connection.query('SELECT * FROM DONOR', (error, results, fields) => {
-//   if (error) {
-//     console.error('Error connecting to MySQL:', error);
-//     return;
-//   }
-//   console.log('Query results:', results);
-// });
+app.post("/signupform", (req, res) => {
+  let Firstname = req.body.Firstname;
+  let Lastname = req.body.Lastname;
+  let Number = req.body.Number;
+  let gender = req.body.gender;
+  let user = req.body.user;
+  let email = req.body.email;
+  let password = req.body.password;
+  let repassword = req.body.repassword;
+  let address = req.body.address;
+  let DOB = req.body.DOB;
+  console.log("User:", user);
+  console.log(req.body)
+  
+  // ab ham user ka data respective table me put kraha hain
+  if (user==="patient") {
+    let userSql = "INSERT INTO PATIENT (P_FIRST_NAME, P_LAST_NAME, P_CONTACT_NO, P_GENDER, P_EMAIL, P_PSWD, P_ADDRESS, P_DOB) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    connection.query(userSql,[Firstname, Lastname, Number, gender, email, password, address, DOB],(error, results, fields) => {
+        if (error) {
+          console.error("Error in inserting the query:", error);
+    res.render("error", {
+      errorMessage: error?.message
+    });
+    return;
+        }
+        console.log("Insertionresults:",results);
+    res.render("formpatient",{ formAction: "/patientapi" });
+  }
+    );
+    
+  }else if (user === "donor") {
+    const userSql = "INSERT INTO DONOR (D_FIRST_NAME, D_LAST_NAME, D_CONTACT_NO, D_GENDER, D_EMAIL, D_PSWD, D_ADDRESS, D_DOB) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    connection.query(userSql, [Firstname, Lastname, Number, gender, email, password, address, DOB], (error, results, fields) => {
+      if (error) {
+        console.error("Error in inserting the query:", error);
+        res.render("error", { errorMessage: error.message });
+        return;
+      }
+      console.log("Insertion results:", results);
+      res.render("formpatient");
+    });
+  }
+  console.log(req.body);
 
+});
+const patienttable = "SELECT * FROM PATIENT";
+app.get("/Patienttable", (req, res) => {
+  connection.query(patienttable, (error, results, fields) => {
+    if (error) {
+      console.error("Error connecting to MySQL:", error);
+      return;
+    }
+    res.json(results);
+    console.log('Query results:', results);
+  });
+});
+const donortable = "SELECT * FROM DONOR";
+app.get("/DonorTable", (req, res) => {
+  connection.query(donortable, (error, results, fields) => {
+    if (error) {
+      console.error("Error connecting to MySQL:", error);
+      return;
+    }
+    res.json(results);
+    console.log('Query results:', results);
+  });
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
