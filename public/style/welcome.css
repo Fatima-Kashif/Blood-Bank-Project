@@ -1,0 +1,257 @@
+*{
+    margin: 0;
+    border: border-box;
+    color:  rgb(242, 235, 235);
+    font-family: Arial;
+}
+body {
+    overflow-x: hidden; 
+    background-color: #F2F2EB;
+}
+.head{
+    background-color:  rgb(219, 9, 9);
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding: 10px 10px 10px 10px;
+    justify-content: space-evenly;
+    font-family: 'Arial';
+}
+.head1{
+    width: 80%;
+    padding-top: 12px;
+    display: flex;
+    font-size: 1.15rem;
+}
+.head2{
+    padding-top: 12px;
+    padding-left: 0px;
+    padding-right: 22px;
+    display: flex;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.head3{
+   padding-right: 10px;
+}
+i{
+    padding-left: 10px;
+    padding-right: 10px; 
+   
+}
+.head2:hover{
+    font-size: 1.2rem;
+}
+.heropart{
+    display: flex;
+    height: 600px;
+}
+.hero{
+    width: 60%;
+    height: 600px;
+    margin-top: 10px;
+    margin-left: 20px;
+    object-fit: cover;
+    overflow: hidden;
+    
+}
+.heropic{
+    background-image: url("/images/pic2.png");
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+.contents{
+    height: 550px;
+    margin-top: 200px;
+}
+.heading1{
+    font-size: 3.5rem;
+    color: rgb(225, 27, 27);
+    display: inline-block;
+    font-family: Montserrat;
+}
+.heading2{
+    font-size: 3.5rem;
+    color:  rgb(225, 27, 27);
+    padding-left:25px ;
+    font-family: Montserrat;
+}
+.heading3{
+    font-size: 4.2rem;
+    font-weight: 800;
+    color: rgb(214, 11, 11);
+    padding-left:26px ;
+    display: inline-block;
+    font-family: Montserrat;
+}
+.foot{
+    display: flex;
+}
+.footer{
+    justify-content: space-evenly;
+    margin-top: 80px;
+}
+.mainpart{
+    display: flex;
+    margin-top: 20px;
+}
+.about{
+    width: 40%;
+    text-align: justify;
+    margin-left: 150px;
+    margin-top: 90px;
+}
+.imagepart1 {
+    width: 350px;
+    height: 350px;
+    margin-left: 150px;
+    
+}
+.image1{
+    background-image: url("/images/image3.png");
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+.imagepart2 {
+    width: 350px;
+    height: 350px;
+    margin-left: 200px;
+    margin-top: 40px;
+    
+}
+.image2{
+    background-image: url("/images/image2.png");
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+.imagepart3 {
+    width: 350px;
+    height: 300px;
+    margin-left: 150px;
+    
+}
+.image3{
+    background-image: url("/images/image1.png");
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+.about1{
+    color: rgb(214, 11, 11);
+    font-family: Montserrat;
+    padding: 20px 20px 20px 10px;
+}
+.about2{
+    color: black;
+    padding: 0px 20px 30px 10px;
+}
+.mission{
+    width: 40%;
+    text-align: justify;
+    margin-left: 120px;
+    margin-top: 50px;
+}
+.mission1{
+    color: rgb(214, 11, 11);
+    font-family: Montserrat;
+    padding: 20px 20px 20px 10px;
+}
+.mission2{
+    color: black;
+    padding: 0px 20px 30px 10px;
+}
+.join{
+    padding-top: 0px;
+    width: 40%;
+    text-align: justify;
+    margin-left: 150px;
+}
+.join1{
+    color: rgb(214, 11, 11);
+    font-family: Montserrat;
+    padding: 20px 20px 20px 10px;
+}
+.join2{
+    color: black;
+    padding: 0px 20px 30px 10px;
+
+}
+/* .foot-pic{
+    width: 30%;
+    height: 200px;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    object-fit: cover;
+    overflow: hidden;
+    
+} */
+/* .pic{
+    background-image: url("pic4.jpg");
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+} */
+.end{
+    color: rgb(214, 11, 11);
+    font-family: Montserrat;
+   
+}
+.endpart{
+    margin-left: 250px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.horizon{
+    width: 95%;
+    height: 0px;
+    color: rgb(192, 183, 183);
+    margin: 0 auto;
+}
+.box{
+    margin-top: 30px;
+    width: 100%;
+    height: 170px;
+    background-color: rgb(184, 9, 9);
+}
+.box4{
+    display: flex;
+    padding-top: 15px;
+    margin-bottom: 5px;
+}
+.detail{
+    color:rgb(206, 201, 201);
+    padding-bottom: 10px;
+}
+.end1{
+    display: flex;
+
+}
+.end2{
+    display: flex;
+}
+.box1{
+    padding: 20px 20px 20px 150px;
+    width: 55%;
+}
+.box3{
+    padding: 20px 40px 20px 10px;
+}
+.box2{
+    display: flex;
+    padding-top: 30px;
+}
+.Copy{
+    color:rgb(160, 160, 160);
+    font-size: smaller;
+    margin-top: 3px;
+    margin-left: 520px;
+}
