@@ -31,6 +31,8 @@ const donorDetailsSql = "SELECT * FROM DONOR";
 const patientsDetailsSql = "SELECT * FROM PATIENT";
 const getAllRequest = "SELECT * FROM REQUEST";
 const getAllDonors = "SELECT * FROM DONOR_RECORD";
+const adminID= "admin@gmail.com"
+const adminpswd="bloodbank"
 connection.query(patientUnionDonor, (error, results, fields) => {
   if (error) {
     console.error("Error connecting to MySQL:", error);
@@ -65,13 +67,26 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
+app.get("/admin", (req, res) => {
+  res.render("admin");
+});
+
+app.get("/stock", (req, res) => {
+  res.render("stock");
+});
+
+
 app.post("/loginapi", (req, res) => {
   let userEmail = req.body.email;
   let userPass = req.body.password;
+  
+  if (userEmail === adminID && userPass === adminpswd) {
+    res.render("admin")
+  }
+
 
   donorDetails.forEach((element) => {
     if (element.D_EMAIL == userEmail && element.D_PSWD == userPass) {
-      // res.render("form")
       res.render("formpatient", {
         email: element.D_EMAIL.toLowerCase(),
         donorID: element.DONOR_ID,
@@ -83,7 +98,6 @@ app.post("/loginapi", (req, res) => {
 
   patientsDetails.forEach((e) => {
     if (e.P_EMAIL == userEmail && e.P_PSWD == userPass) {
-      // res.render("form")
       res.render("formpatient", {
         email: e.P_EMAIL.toLowerCase(),
         patientID: e.PATIENT_ID,

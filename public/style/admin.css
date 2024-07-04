@@ -1,0 +1,173 @@
+
+* {
+    margin: 0;
+    border: border-box;
+    color:  rgb(242, 235, 235);
+}
+.body{
+    overflow-y: hidden;
+}
+
+.sidebar-menu li a .fa {
+    padding-right: 10px;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f2f2eb;
+}
+
+.sidebar {
+    background-color: #343a40;
+    width: 200px;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar-title {
+    margin-bottom: 20px;
+}
+
+.sidebar-title h2 {
+    margin: 0;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    width: 100%;
+}
+
+.sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu a .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.sidebar-menu a:hover {
+    background-color: #495057;
+}
+
+.head {
+    background-color: rgb(219, 9, 9);
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0px 10px 10px;
+    justify-content: space-between;
+    font-family: 'Arial';
+}
+
+.options {
+    display: flex;
+}
+
+.head1 {
+    padding-top: 12px;
+    display: flex;
+    font-size: 1.15rem;
+}
+
+.head2 {
+    padding-top: 12px;
+    padding-left: 0px;
+    padding-right: 22px;
+    display: flex;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.head3 {
+    padding-right: 10px;
+}
+
+i {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.head2:hover {
+    font-size: 1.2rem;
+}
+
+.container{
+    position: relative;
+    /* overflow: hidden; */
+    width: 100%;
+    /* height: ;  */
+    background-image: url('/images/adminwelcome.jpg');
+    background-position: center; /* Center the image */
+    background-size:cover;
+    background-repeat: no-repeat;
+    /* margin-top: 50px; */
+    /* padding: 5px 10px 5px 10px ; */
+
+}
+.H1 {
+    position: absolute;
+    top: 60%;
+    left: 56%;
+    font-size: 50px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-family: montserrat;
+    line-height: 100px;
+    color:  rgb(199, 11, 11); /* Change text color to red */
+    animation: glow 2s infinite alternate; /* Apply the glow animation */
+    z-index: 1; /* Ensure the text is above the background */
+}
+
+.container:hover .H1 {
+    opacity: 1;
+}
+.side_img{
+    display: flex;
+    /* gap: 20px; */
+}
+
+
+.container:hover .H1 {
+    opacity: 1; /* Show the text when container is hovered over */
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px red; /* Start glow effect */
+    }
+    50% {
+        text-shadow: 0 0 20px red; /* Middle glow effect */
+    }
+    100% {
+        text-shadow: 0 0 30px red; /* End glow effect */
+    }
+}
+a {
+    text-decoration: none; /* Remove underline */
+}
+
+
+
+
