@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management System</title>
+    <link rel="stylesheet" href="/style/styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="head">
+        <div class="head1">
+            <i class="fa-solid fa-heart-pulse fa-lg" style="color: rgb(242, 235, 235); padding-top: 10px;"></i>
+            <h4 class="head4">Blood Bank Management System</h4>
+        </div>
+        <div class="options">
+            <div class="head2">
+                <i class="fa-solid fa-sign-out" style="color: rgb(242, 235, 235);"></i>
+                <p class="head3">Log out</p>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="outer">
+    <div class="box">
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="/admin"><i class="fa fa-house icon-padding"></i> Home</a></li>
+                <li><a href="/donorRecord"><i class="fa fa-user icon-padding"></i> Donor</a></li>
+                <li><a href="/patient"><i class="fa fa-user icon-padding"></i> Patient</a></li>
+                <li><a href="/stock"><i class="fa-solid fa-arrow-trend-up icon-padding"></i> Stock</a></li>
+                <li><a href="/donationrecords"><i class="fa-solid fa-clock-rotate-left icon-padding"></i> Donation Records</a></li>
+                <li><a href="/request"><i class="fa-solid fa-clock-rotate-left icon-padding"></i> Request </a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Blood Donation Record</h1>
+        <table id="donorTable">
+            <thead>
+                <tr>
+                    <th>Donor ID</th>
+                    <th>Blood Group</th>
+                    <th>Units</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% donation.forEach(record => { %>
+                    <tr>
+                      <td><%= record.DONOR_ID %></td>
+                      <td><%= record.D_BLOOD_GROUP %></td>
+                      <td><%= record.D_UNITS %></td>
+                      <td><%= record.D_DATE_DON %></td>
+                    </tr>
+                  <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

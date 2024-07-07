@@ -1,0 +1,271 @@
+/* body {
+    font-family: montserrat;
+    background-color: #f8f9fa;
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    background-color: #343a40;
+    width: 200px;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar-title {
+    margin-bottom: 20px;
+}
+
+.sidebar-title h2 {
+    margin: 0;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    width: 100%;
+}
+
+.sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu a .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.sidebar-menu a:hover {
+    background-color: #495057;
+} */
+
+/* .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .navbar {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-left {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+} */
+*{
+    margin: 0;
+    border: border-box;
+    
+}
+#donorTable {
+    font-family: "montserrat";
+    margin-top: 40px; /* Adjust the value as needed */
+}
+
+#patientTable{
+font-family: "montserrat";
+margin-top: 40px;
+}
+.sidebar-menu li a .fa {
+    padding-right: 10px; 
+}
+.sidebar-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    padding-bottom: 5px; 
+    margin-bottom: 5px; 
+}
+body {
+    overflow-x: hidden; 
+    font-family: 'Arial';
+    background-color: #f2f2eb ;
+}
+.sidebar {
+    background-color: #343a40;
+    width: 200px;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar-title {
+    margin-bottom: 20px;
+}
+
+.sidebar-title h2 {
+    margin: 0;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    width: 100%;
+}
+
+.sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu a .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.sidebar-menu a:hover {
+    background-color: #495057;
+}
+.head{
+    background-color:  rgb(219, 9, 9);
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0px 10px 10px;
+    justify-content: space-between;
+    font-family: 'Arial';
+    color:  rgb(242, 235, 235);
+}
+.options{
+    display: flex;
+}
+.head1{
+    padding-top: 12px;
+    display: flex;
+    font-size: 1.15rem;
+}
+.head2{
+    padding-top: 12px;
+    padding-left: 0px;
+    padding-right: 22px;
+    display: flex;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.head3{
+   padding-right: 10px;
+}
+i{
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+.head2:hover{
+    font-size: 1.2rem;
+}
+.outer{
+    display: flex;
+    
+}
+
+
+table thead tr th {
+    background-color: #f8f9fa; /* light grey  color for the header cells */
+    color: black; /* White color for the header text */
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #e9ecef; /* Light gray color for even rows */
+  }
+  
+  table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa; /* Darker gray color for odd rows */
+  }
+.content {
+    padding: 20px;
+    width: 90%;
+}
+
+.content h1 {
+    margin-top: 20px; /* Adjust this value to move the heading down slightly */
+    margin-bottom: 20px;
+    font-size: 35px; /* Adjust this value to make the heading slightly larger */
+    color: rgb(199,11,11);
+    text-align: center;
+    font-family: 'Arial';
+
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+}
+
+table, th, td {
+    border: 1px solid #dee2e6;
+}
+
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #e9ecef;
+}
+
+button.approve {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+button.reject {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button.approve:hover, button.reject:hover {
+    opacity: 0.8;
+}
+.sidebar-menu li a .fa {
+    padding-right: 10px; /* Space between icons and text */
+}
+.navbar-right a .fa{
+    padding-left: 10px;
+} 
