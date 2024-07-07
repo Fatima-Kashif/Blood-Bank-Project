@@ -58,7 +58,13 @@
                       <td><%= record.DONOR_ID %></td>
                       <td><%= record.D_BLOOD_GROUP %></td>
                       <td><%= record.D_UNITS %></td>
-                      <td><%= record.D_DATE_DON %></td>
+                      <td>
+                        <% 
+                          const date = new Date(record.D_DATE_DON);
+                          const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+                        %>
+                        <%= formattedDate %>
+                      </td> 
                     </tr>
                   <% }) %>
             </tbody>

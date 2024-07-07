@@ -63,7 +63,13 @@
                           <td><%= donor.D_GENDER %></td>
                           <td><%= donor.D_CONTACT_NO %></td>
                           <td><%= donor.D_ADDRESS %></td>
-                          <td><%= donor.D_DOB %></td>
+                          <td>
+                            <% 
+                              const date = new Date(donor.D_DOB );
+                              const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+                            %>
+                            <%= formattedDate %>
+                          </td> 
                         </tr>
                       <% }) %>
                     <!-- <tr>

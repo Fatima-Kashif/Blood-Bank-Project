@@ -95,29 +95,29 @@ connection.query(donorDetailsSql, (error, results, fields) => {
  
   // console.log('Query results:', donorDetails);
 });
-connection.query("SELECT * FROM STOCK", (error, results, fields) => {
-  if (error) {
-    console.error("Error connecting to MySQL:", error);
-    return;
-  }
-  stock = results;
+// connection.query("SELECT * FROM STOCK", (error, results, fields) => {
+//   if (error) {
+//     console.error("Error connecting to MySQL:", error);
+//     return;
+//   }
+//   stock = results;
 
-  const bloodUnits = {};
+//   const bloodUnits = {};
 
-  // Iterate through the array and save total units for each blood group in a variable
-  stock.forEach(item => {
-    bloodUnits[item.BLOOD_GROUP] = item.TOT_UNIT;
-  });
+//   // Iterate through the array and save total units for each blood group in a variable
+//   stock.forEach(item => {
+//     bloodUnits[item.BLOOD_GROUP] = item.TOT_UNIT;
+//   });
 
-  // Now you can access the total units of each blood group using the bloodUnits object
-  const totalAPlusUnits = bloodUnits['A+'];
-  const totalAMinusUnits = bloodUnits['A-'];
-  const totalABPlusUnits = bloodUnits['AB+'];
-  const totalABMinusUnits = bloodUnits['AB-'];
-  const totalBPlusUnits = bloodUnits['B+'];
-  const totalBMinusUnits = bloodUnits['B-'];
-  const totalOPlusUnits = bloodUnits['O+'];
-  const totalOMinusUnits = bloodUnits['O-'];
+//   // Now you can access the total units of each blood group using the bloodUnits object
+//   const totalAPlusUnits = bloodUnits['A+'];
+//   const totalAMinusUnits = bloodUnits['A-'];
+//   const totalABPlusUnits = bloodUnits['AB+'];
+//   const totalABMinusUnits = bloodUnits['AB-'];
+//   const totalBPlusUnits = bloodUnits['B+'];
+//   const totalBMinusUnits = bloodUnits['B-'];
+//   const totalOPlusUnits = bloodUnits['O+'];
+//   const totalOMinusUnits = bloodUnits['O-'];
 
   // console.log('Total units of A+:', totalAPlusUnits);
   // console.log('Total units of A-:', totalAMinusUnits);
@@ -129,7 +129,7 @@ connection.query("SELECT * FROM STOCK", (error, results, fields) => {
   // console.log('Total units of O-:', totalOMinusUnits);
 
   // Any code that relies on the bloodUnits object should be placed here or called from here
-});
+// });
 
 
 connection.query(patientsDetailsSql, (error, results, fields) => {
@@ -165,6 +165,7 @@ app.get("/showStock", (req, res) => {
         return;
       }
       stock = results;
+      console.log(stock);
     
       const bloodUnits = {};
     
@@ -352,21 +353,31 @@ app.post("/loginapi", (req, res) => {
   
       // Continue with the request as the blood group matches
       let patientReqSql = "INSERT INTO REQUEST (PATIENT_ID, UNITS, BLOOD_GRP_REQ, TO_DATE, STATUS) VALUES(?, ?, ?, ?, ?)";
-      let curDate = "SELECT CURDATE() AS currentDate FROM DUAL;";
-      connection.query(curDate, (error, results) => {
-        if (error) {
-          console.error("Error fetching current date:", error);
-          res.render("error", {
-            errorMessage: "An error occurred while processing your request. Please try again later.2"
-          });
-          return;
-        }
-        reqdate = results[0].currentDate;
+      // let curDate = "SELECT DATE_FORMAT(CURDATE(), '%Y-%m-%d') AS currentDate;";
+      // connection.query(curDate, (error, results) => {
+      //   if (error) {
+      //     console.error("Error fetching current date:", error);
+      //     res.render("error", {
+      //       errorMessage: "An error occurred while processing your request. Please try again later.2"
+      //     });
+      //     return;
+      //   }
+        let reqdate = new Date();
         let hasError = false; // Add a flag to indicate an error
         let ptstock;
-        stock.forEach(element => {
+        
+        connection.query("SELECT * FROM STOCK", (error, results, fields) => {
+          if (error) {
+            console.error("Error connecting to MySQL:", error);
+            return;
+          }
+        stock = results;
+        console.log("stock",stock)
+        stock.forEach(element =>{
+          console.log("element",element)
           if (element.BLOOD_GROUP == bld_grp) {
-            ptstock = element.TOT_UNIT;
+            console.log(element.BLOOD_GROUP)
+            ptstock = element.TOT_UNIT;}
             if (ptstock == 0 || ptstock < units) {
               console.log("Your request has been rejected");
               hasError = true; //
@@ -377,7 +388,7 @@ app.post("/loginapi", (req, res) => {
                   if (error) {
                     console.error("Error inserting patient request:", error);
                     res.render("error", {
-                      errorMessage: "An error occurred while processing your request. Please try again later4."
+                      errorMessage: "You cannot make more than one request in a day."
                     });
                     return;
                   }
@@ -388,7 +399,7 @@ app.post("/loginapi", (req, res) => {
                 errorMessage: "Insufficient stock for the requested blood group."
               });
             }
-          }
+          
         });
        
         if (hasError) {
@@ -397,6 +408,7 @@ app.post("/loginapi", (req, res) => {
   
         let ptdcStock = `UPDATE STOCK SET TOT_UNIT = ? WHERE BLOOD_GROUP = ?`;
         connection.query(ptdcStock, [ptstock - parseInt(units), bld_grp], (error, results) => {
+          console.log("results",results)
           if (error) {
             console.error("Error updating stock:", error);
             res.render("error", {
@@ -426,7 +438,8 @@ app.post("/loginapi", (req, res) => {
         });
       });
     });
-  });
+    });
+
   
   app.post("/donorapi", (req, res) => {
     let bld_grp = req.body.bld_grp;
@@ -491,8 +504,7 @@ app.post("/loginapi", (req, res) => {
       (error, results, fields) => {
         if (error) {
           console.error("Error connecting to MySQL:", error);
-    res.render("error", {
-      errorMessage: error?.message
+    res.render("error", {errorMessage: "You cannot donate more than one time in a day."
     });
     return;
         }

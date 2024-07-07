@@ -61,7 +61,13 @@
                           <td><%= patient.P_GENDER %></td>
                           <td><%= patient.P_CONTACT_NO %></td>
                           <td><%= patient.P_ADDRESS %></td>
-                          <td><%= patient.P_DOB %></td>
+                          <td>
+                            <% 
+                              const date = new Date(patient.P_DOB);
+                              const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+                            %>
+                            <%= formattedDate %>
+                          </td> 
                         </tr>
                       <% }) %>
                 </tbody>
