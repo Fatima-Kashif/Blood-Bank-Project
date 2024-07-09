@@ -17,9 +17,80 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+      *{
+    margin: 0;
+    border: border-box;
+    
+}
+      .head{
+    background-color:  rgb(219, 9, 9);
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0px 10px 10px;
+    justify-content: space-between;
+    font-family: 'Arial';
+}
+.options{
+    display: flex;
+}
+.head1{
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.15rem;
+    color:  rgb(242, 235, 235)
+    
+}
+.main{
+    display: flex;
+}
+.head2{
+    padding-top: 12px;
+    padding-left: 0px;
+    padding-right: 22px;
+    display: flex;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.head3{
+   padding-right: 10px;
+}
+i{
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+.head2:hover{
+    font-size: 1.2rem;
+}
+    </style>
   </head>
 
   <body>
+    <header>
+      <div class="head">
+        <div class="head1">
+          <i class="fa-solid fa-heart-pulse fa-lg" style="color:  rgb(242, 235, 235); padding-top: 10px;"></i>
+          <h4 class="head4">Blood Bank Management System</h4>
+        </div >
+        <div class="options">
+        <div class="head2">
+          <i class="fa-solid fa-house-chimney" style="color:  rgb(242, 235, 235);"></i>
+         <a href="/" class="head3" style="text-decoration: none; color:  rgb(242, 235, 235);">Home</a>
+         </div>
+         <div class="head2">
+          <i class="fa-solid fa-user-tie" style="color: rgb(242, 235, 235);"></i>
+          <a href="/login" class="head3" style="text-decoration: none; color:  rgb(242, 235, 235);">Logout</a>
+          
+         </div>
+       </div>
+      </div>
+  </header>
+  <div style="margin-top: 20px;">
     <% if (locals.email && locals.d) { %>
     <h2 style="color: red">Email id of <%= d %> <%= email %></h2>
     <%} %> <% if (locals.email && locals.p) { %>
@@ -29,7 +100,8 @@
     <%} %> <% if (locals.patientID && locals.p) { %>
     <h2 style="color: green">Patient ID <%= patientID %></h2>
     <%} %>
-    <div class="whole">
+  </div>
+    <div class="whole" style="margin-top: 20px;">
       <div class="outer">
         <p id="title">BLOOD DONATION REQUEST FORM</p>
         <div class="inner">

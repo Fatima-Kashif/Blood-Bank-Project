@@ -8,35 +8,7 @@
     <link rel="stylesheet" href="/style/stock.css">
 </head>
 <body onload="showStocks()">
-    <header>
-        <div class="head">
-          <div class="head1">
-            <i class="fa-solid fa-heart-pulse fa-lg" style="color: rgb(242, 235, 235); padding-top: 10px;"></i>
-            <h4 class="head4">Blood Bank Management System</h4>
-          </div >
-          <div class="options">
-          <div class="head2">
-            <i class="fa-solid fa-house-chimney" style="color: rgb(242, 235, 235);"></i>
-            <p class="head3">Home</p>
-           </div>
-           <div class="head2">
-            <i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(242, 235, 235);"></i>
-            <p class="head3">Log out</p>
-           </div>
-         </div>
-        </div>
-    </header>
-    <div class="box">
-      <div class="sidebar">
-        <ul class="sidebar-menu">
-          <li><a href="/admin"><i class="fa fa-house icon-padding"></i> Home</a></li>
-          <li><a href="/donor"><i class="fa fa-user icon-padding"></i> Donor</a></li>
-          <li><a href="/patient"><i class="fa fa-user icon-padding"></i> Patient</a></li>
-          <li><a href="/stock"><i class="fa-solid fa-arrow-trend-up icon-padding"></i> Stock</a></li>
-          <li><a href="/donationrecords"><i class="fa-solid fa-clock-rotate-left icon-padding"></i> Donation Records</a></li>
-          <li><a href="/request"><i class="fa-solid fa-clock-rotate-left icon-padding"></i> Request </a></li>
-        </ul>
-      </div>
+  <%- include('partials/header.ejs') %>
       <div class="rows">
       <div class="feedback">
         <div class="fb">

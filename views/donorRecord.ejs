@@ -12,34 +12,7 @@
     
 </head>
 <body>
-<header>
-    <div class="head">
-        <div class="head1">
-            <i class="fa-solid fa-heart-pulse fa-lg" style="color: rgb(242, 235, 235); padding-top: 10px;"></i>
-            <h4 class="head4">Blood Bank Management System</h4>
-        </div>
-        <div class="options">
-            <div class="head2">
-                <i class="fa-solid fa-sign-out" style="color: rgb(242, 235, 235);"></i>
-                <p class="head3">Log out</p>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="outer">
-    <div class="box">
-        <div class="sidebar">
-            <ul class="sidebar-menu">
-                <li><a href="/admin"><i class="fa fa-house icon-padding"></i> Home</a></li>
-                <li><a href="/donorRecord"><i class="fa fa-user icon-padding"></i> Donor</a></li>
-                <li><a href="/patient"><i class="fa fa-user icon-padding"></i> Patient</a></li>
-                <li><a href="/stock"><i class="fa-solid fa-arrow-trend-up icon-padding"></i> Stock</a></li>
-                <li><a href="/donationrecords"><i class="fa-solid fa-clock-rotate-left icon-padding"></i> Donation Records</a></li>
-                <li><a href="/request"><i class="fa-solid fa-clock-rotate-left icon-padding"></i> Request </a></li>
-                
-            </ul>
-        </div>
-    </div>
+    <%- include('partials/header.ejs') %>
         <div class="content">
             <h1>Donor Records</h1>
             <table id="donorTable">
@@ -72,51 +45,7 @@
                           </td> 
                         </tr>
                       <% }) %>
-                    <!-- <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>johndoe@example.com</td>
-                        <td>Male</td>
-                        <td>1234567890</td>
-                        <td>123 Main St, City</td>
-                        <td>1999-01-01</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>janesmith@example.com</td>
-                        <td>Female</td>
-                        <td>9876543210</td>
-                        <td>456 Elm St, Town</td>
-                        <td>1995-05-15</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Emily Davis</td>
-                        <td>emilydavis@example.com</td>
-                        <td>Female</td>
-                        <td>2345678901</td>
-                        <td>789 Oak St, Village</td>
-                        <td>2002-07-20</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Michael Brown</td>
-                        <td>michaelbrown@example.com</td>
-                        <td>Male</td>
-                        <td>3456789012</td>
-                        <td>321 Pine St, County</td>
-                        <td>1979-11-30</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Anna Johnson</td>
-                        <td>annajohnson@example.com</td>
-                        <td>Female</td>
-                        <td>4567890123</td>
-                        <td>567 Maple St, State</td>
-                        <td>1996-03-25</td>
-                    </tr> -->
+                    
                 </tbody>
             </table>
         </div>

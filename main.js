@@ -405,6 +405,9 @@ app.post("/loginapi", (req, res) => {
         if (hasError) {
           return; // Exit the function if there was an error
         }
+        console.log("ptstock:", ptstock);
+console.log("units:", units);
+console.log("bld_grp:", bld_grp);
   
         let ptdcStock = `UPDATE STOCK SET TOT_UNIT = ? WHERE BLOOD_GROUP = ?`;
         connection.query(ptdcStock, [ptstock - parseInt(units), bld_grp], (error, results) => {
@@ -440,82 +443,78 @@ app.post("/loginapi", (req, res) => {
     });
     });
 
-  
-  app.post("/donorapi", (req, res) => {
-    let bld_grp = req.body.bld_grp;
-    let units = req.body.units;
-    let date;
-    let DONOR_ID = req.body.DONOR_ID;
-    let flagGrp,flagStk
-    stock.forEach(element => {
-      if(element.BLOOD_GROUP == bld_grp){
-        flagGrp = bld_grp
-        flagStk = element.TOT_UNIT
-      }
-      // console.log(flagGrp)
-      // console.log(flagStk)
-      
-    });
-    let getDonorBloodGroupSql = "SELECT D_BLOOD_GROUP FROM DONOR_RECORD WHERE DONOR_ID = ?";
-    
-    connection.query(getDonorBloodGroupSql, [DONOR_ID], (error, results) => {
+
+
+app.post("/donorapi", (req, res) => {
+  let bld_grp = req.body.bld_grp;
+  let units = parseInt(req.body.units, 10);
+  let DONOR_ID = req.body.DONOR_ID;
+
+  let getStockSql = "SELECT * FROM STOCK WHERE BLOOD_GROUP = ?";
+  let getDonorBloodGroupSql = "SELECT D_BLOOD_GROUP FROM DONOR_RECORD WHERE DONOR_ID = ?";
+  let donorReqSql = "INSERT INTO DONOR_RECORD (DONOR_ID, D_UNITS, D_DATE_DON, D_BLOOD_GROUP) VALUES(?, ?, ?, ?)";
+  let dbincStock = "UPDATE STOCK SET TOT_UNIT = ? WHERE BLOOD_GROUP = ?";
+
+  // Step 1: Get the stock for the given blood group
+  connection.query(getStockSql, [bld_grp], (error, stockResults) => {
+    if (error) {
+      console.error("Error connecting to MySQL:", error);
+      return res.render("error", {
+        errorMessage: "An error occurred while processing your request. Please try again later."
+      });
+    }
+
+    if (stockResults.length === 0) {
+      return res.render("error", {
+        errorMessage: "No stock available for the requested blood group."
+      });
+    }
+
+    let flagStk = stockResults[0].TOT_UNIT;
+
+    // Step 2: Check the donor's previous blood group requests
+    connection.query(getDonorBloodGroupSql, [DONOR_ID], (error, donorResults) => {
       if (error) {
-        console.error("Error querying patient's blood group requests:", error);
-        res.render("error", {
+        console.error("Error querying donor's blood group requests:", error);
+        return res.render("error", {
           errorMessage: "An error occurred while processing your request. Please try again later."
         });
-        return;
       }
-  
-      // Check if there are previous requests and if they match the current blood group request
-      if (results.length > 0) {
-        const previousBloodGrps = results.map(row => row.D_BLOOD_GROUP);
+
+      if (donorResults.length > 0) {
+        const previousBloodGrps = donorResults.map(row => row.D_BLOOD_GROUP);
         const uniqueBloodGrps = new Set(previousBloodGrps);
         if (uniqueBloodGrps.size > 1 || (uniqueBloodGrps.size === 1 && !uniqueBloodGrps.has(bld_grp))) {
-          // Patient has requested different blood groups
-          res.render("error", {
-            errorMessage: "You have previously requested a different blood group. Donors cannot donate different blood groups."
+          return res.render("error", {
+            errorMessage: "You have previously donated a different blood group. Donors cannot donate different blood groups."
           });
-          return;
         }
-      } 
-    // ab ham donor ka data donor record me put kraha hain
-    console.log(req.body);
-    let donorReqSql =
-      "INSERT INTO DONOR_RECORD (DONOR_ID,D_UNITS,D_DATE_DON,D_BLOOD_GROUP) VALUES(?,?,?,?)";
-    let curDate = "SELECT curdate() FROM DUAL;";
-    connection.query(curDate, (error, results, fields) => {
-      if (error) {
-        console.error("Error connecting to MySQL:", error);
-        return;
       }
-      date = results;
-    });
-    let dbincStock = `UPDATE STOCK SET TOT_UNIT = ? WHERE BLOOD_GROUP  = ?`;
-    connection.query(dbincStock,[flagStk+parseInt(units),flagGrp], (error, results, fields) => {
-      if (error) {
-        console.error("Error connecting to MySQL:", error);
-        return;
-      }
-    });
-    connection.query(
-      donorReqSql,
-      [parseInt(DONOR_ID), units, new Date(),bld_grp],
-      (error, results, fields) => {
+
+      // Step 3: Insert the donor record and update the stock
+      connection.query(donorReqSql, [parseInt(DONOR_ID), units, new Date(), bld_grp], (error, donorInsertResults) => {
         if (error) {
-          console.error("Error connecting to MySQL:", error);
-    res.render("error", {errorMessage: "You cannot donate more than one time in a day."
-    });
-    return;
+          console.error("Error inserting donor record:", error);
+          return res.render("error", {
+            errorMessage: "You cannot donate more than one time in a day."
+          });
         }
-        console.log(results, fields, "results, fields");
-    res.render("clock");
-  }
-    );
 
+        connection.query(dbincStock, [flagStk + units, bld_grp], (error, stockUpdateResults) => {
+          if (error) {
+            console.error("Error updating stock:", error);
+            return res.render("error", {
+              errorMessage: "An error occurred while processing your request. Please try again later."
+            });
+          }
+
+          res.render("clock");
+        });
+      });
+    });
   });
-
 });
+
 // this is the API FOR STOCK
 app.post("/stock", (req, res) => {
   res.json(stock)
