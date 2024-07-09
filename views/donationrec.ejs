@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
 </head>
-<body>
+<body onload="showdonation">
     <%- include('partials/header.ejs') %>
     <div class="content">
         <h1>Blood Donation Record</h1>
@@ -44,5 +44,15 @@
         </table>
     </div>
 </div>
+<script>
+  function showdonation(){
+    fetch("http://127.0.0.1:3000/donationrecords") .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+  }
+</script>
 </body>
 </html>

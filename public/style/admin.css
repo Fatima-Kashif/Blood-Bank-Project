@@ -26,12 +26,13 @@ body {
 .sidebar {
     background-color: #343a40;
     width: 200px;
-    height: 100vh;
+    height: 100%;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    height: 100vh;
 }
 
 .sidebar-title {

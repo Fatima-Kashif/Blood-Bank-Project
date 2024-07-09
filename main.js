@@ -95,43 +95,6 @@ connection.query(donorDetailsSql, (error, results, fields) => {
  
   // console.log('Query results:', donorDetails);
 });
-// connection.query("SELECT * FROM STOCK", (error, results, fields) => {
-//   if (error) {
-//     console.error("Error connecting to MySQL:", error);
-//     return;
-//   }
-//   stock = results;
-
-//   const bloodUnits = {};
-
-//   // Iterate through the array and save total units for each blood group in a variable
-//   stock.forEach(item => {
-//     bloodUnits[item.BLOOD_GROUP] = item.TOT_UNIT;
-//   });
-
-//   // Now you can access the total units of each blood group using the bloodUnits object
-//   const totalAPlusUnits = bloodUnits['A+'];
-//   const totalAMinusUnits = bloodUnits['A-'];
-//   const totalABPlusUnits = bloodUnits['AB+'];
-//   const totalABMinusUnits = bloodUnits['AB-'];
-//   const totalBPlusUnits = bloodUnits['B+'];
-//   const totalBMinusUnits = bloodUnits['B-'];
-//   const totalOPlusUnits = bloodUnits['O+'];
-//   const totalOMinusUnits = bloodUnits['O-'];
-
-  // console.log('Total units of A+:', totalAPlusUnits);
-  // console.log('Total units of A-:', totalAMinusUnits);
-  // console.log('Total units of AB+:', totalABPlusUnits);
-  // console.log('Total units of AB-:', totalABMinusUnits);
-  // console.log('Total units of B+:', totalBPlusUnits);
-  // console.log('Total units of B-:', totalBMinusUnits);
-  // console.log('Total units of O+:', totalOPlusUnits);
-  // console.log('Total units of O-:', totalOMinusUnits);
-
-  // Any code that relies on the bloodUnits object should be placed here or called from here
-// });
-
-
 connection.query(patientsDetailsSql, (error, results, fields) => {
   if (error) {
     console.error("Error connecting to MySQL:", error);
@@ -165,7 +128,6 @@ app.get("/showStock", (req, res) => {
         return;
       }
       stock = results;
-      console.log(stock);
     
       const bloodUnits = {};
     
@@ -183,16 +145,7 @@ app.get("/showStock", (req, res) => {
       const totalBMinusUnits = bloodUnits['B-'];
       const totalOPlusUnits = bloodUnits['O+'];
       const totalOMinusUnits = bloodUnits['O-'];
-    
-      // console.log('Total units of A+:', totalAPlusUnits);
-      // console.log('Total units of A-:', totalAMinusUnits);
-      // console.log('Total units of AB+:', totalABPlusUnits);
-      // console.log('Total units of AB-:', totalABMinusUnits);
-      // console.log('Total units of B+:', totalBPlusUnits);
-      // console.log('Total units of B-:', totalBMinusUnits);
-      // console.log('Total units of O+:', totalOPlusUnits);
-      // console.log('Total units of O-:', totalOMinusUnits);
-
+  
       res.json({totalAPlusUnits,
       totalAMinusUnits,
       totalABPlusUnits,
@@ -201,8 +154,6 @@ app.get("/showStock", (req, res) => {
         totalBMinusUnits,
         totalOPlusUnits,
         totalOMinusUnits})
-  
-      
     });
 });
 
@@ -238,87 +189,6 @@ app.post("/loginapi", (req, res) => {
     }
   });
 })
-  // app.post("/patientapi", (req, res) => {
-  //   let bld_grp = req.body.bld_grp;
-  //   let units = req.body.units;
-  //   let reqdate;
-  //   let PT_ID = req.body.PT_ID;
-  //   // ab ham patient ka data request me put kraha hain
-  //   console.log(req.body);
-  //   let patientReqSql =
-  //     "INSERT INTO REQUEST (PATIENT_ID,UNITS,BLOOD_GRP_REQ,TO_DATE,STATUS) VALUES(?,?,?,?,?)";
-  //   let curDate = "SELECT curdate() FROM DUAL;";
-  //   connection.query(curDate, (error, results, fields) => {
-  //     if (error) {
-  //       console.error("Error connecting to MySQL:", error);
-  //       return;
-  //     }
-  //     reqdate = results;
-  //     console.log(reqdate);
-  //   });
-  // // Query to get the existing blood group requests for the patient
-  // let getPatientBloodGroupsSql = "SELECT BLOOD_GRP_REQ FROM REQUEST WHERE PATIENT_ID = ?";
-  
-  // connection.query(getPatientBloodGroupsSql, [PT_ID], (error, results) => {
-  //   if (error) {
-  //     console.error("Error querying patient's blood group requests:", error);
-  //     res.render("error", {
-  //       errorMessage: "An error occurred while processing your request. Please try again later."
-  //     });
-  //     return;
-  //   }
-
-  //   // Check if there are previous requests and if they match the current blood group request
-  //   if (results.length > 0) {
-  //     const previousBloodGroups = results.map(row => row.BLOOD_GRP_REQ);
-  //     const uniqueBloodGroups = new Set(previousBloodGroups);
-  //     if (uniqueBloodGroups.size > 1 || (uniqueBloodGroups.size === 1 && !uniqueBloodGroups.has(bld_grp))) {
-  //       // Patient has requested different blood groups
-  //       res.render("error", {
-  //         errorMessage: "You have previously requested a different blood group. Patients cannot request different blood groups."
-  //       });
-  //       return;
-  //     }
-  //   }
-  //   let ptstock;
-  //   stock.forEach(element => {
-  //     if(element.BLOOD_GROUP == bld_grp){
-  //       ptstock = element.TOT_UNIT
-  //       if (ptstock==0 || ptstock<units){
-  //         console.log("Your request has been rejected");
-  //       }
-  //     }
-  //   });
-
-  //   let ptdcStock = `UPDATE STOCK SET TOT_UNIT = ? WHERE BLOOD_GROUP  = ?`;
-  //   connection.query(ptdcStock,[ptstock-parseInt(units),bld_grp], (error, results, fields) => 
-  //     {
-  //     if (error) {
-  //       console.error("Error connecting to MySQL:", error);
-  //       return;
-  //     }
-  //     else{
-  //        count=count+1;
-  //     }
-  //   });
-  //   app.get("/stock", (req, res) => {
-  //     res.render("stock",  {count:count});
-  //   });
-
-  //   connection.query(
-  //     patientReqSql,
-  //     [ parseInt(PT_ID), units, bld_grp, reqdate, "Pending"],
-  //     (error, results, fields) => {
-  //       if (error) {
-  //         console.error("Error connecting to MySQL:", error);
-  //         return;
-  //       }
-  //       console.log(results, fields, "results, fields");
-  //     }
-  //   );
-
-  //   res.render("clock");
-  // });
   app.post("/patientapi", (req, res) => {
     let bld_grp = req.body.bld_grp;
     let units = req.body.units;
@@ -353,15 +223,6 @@ app.post("/loginapi", (req, res) => {
   
       // Continue with the request as the blood group matches
       let patientReqSql = "INSERT INTO REQUEST (PATIENT_ID, UNITS, BLOOD_GRP_REQ, TO_DATE, STATUS) VALUES(?, ?, ?, ?, ?)";
-      // let curDate = "SELECT DATE_FORMAT(CURDATE(), '%Y-%m-%d') AS currentDate;";
-      // connection.query(curDate, (error, results) => {
-      //   if (error) {
-      //     console.error("Error fetching current date:", error);
-      //     res.render("error", {
-      //       errorMessage: "An error occurred while processing your request. Please try again later.2"
-      //     });
-      //     return;
-      //   }
         let reqdate = new Date();
         let hasError = false; // Add a flag to indicate an error
         let ptstock;
@@ -372,11 +233,9 @@ app.post("/loginapi", (req, res) => {
             return;
           }
         stock = results;
-        console.log("stock",stock)
         stock.forEach(element =>{
           console.log("element",element)
           if (element.BLOOD_GROUP == bld_grp) {
-            console.log(element.BLOOD_GROUP)
             ptstock = element.TOT_UNIT;}
             if (ptstock == 0 || ptstock < units) {
               console.log("Your request has been rejected");
@@ -442,8 +301,6 @@ console.log("bld_grp:", bld_grp);
       });
     });
     });
-
-
 
 app.post("/donorapi", (req, res) => {
   let bld_grp = req.body.bld_grp;
@@ -651,8 +508,8 @@ app.post("/signupform", (req, res) => {
     });
     return;
         }
-        console.log("Insertionresults:",results);
-    res.render("formpatient",{ formAction: "/patientapi" });
+        // console.log("Insertionresults:",results);
+    res.render("login");
   }
     );
     
@@ -665,7 +522,7 @@ app.post("/signupform", (req, res) => {
         return;
       }
       console.log("Insertion results:", results);
-      res.render("formpatient");
+      res.render("login");
     });
   }
   console.log(req.body);
